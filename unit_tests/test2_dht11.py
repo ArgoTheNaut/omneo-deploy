@@ -24,6 +24,7 @@ while True:
                 "humidity": humidity,
                 "time": int(time.time() * 1000)  # JS-friendly ms since epoch
             }))
+            file.write("\n")
 
     except RuntimeError as error:
         # Errors happen fairly often, DHT's are hard to read, just keep going
