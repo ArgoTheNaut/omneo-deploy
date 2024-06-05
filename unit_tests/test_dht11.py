@@ -38,13 +38,13 @@ class DHT11:
         RPi.GPIO.setup(self.__pin, RPi.GPIO.OUT)
 
         # send initial high
-        self.__send_and_sleep(RPi.GPIO.HIGH, 0.05)
+        self.__send_and_sleep(RPi.GPIO.HIGH, 0.05)  # 50 ms
 
         # pull down to low
-        self.__send_and_sleep(RPi.GPIO.LOW, 0.02)
+        self.__send_and_sleep(RPi.GPIO.LOW, 0.02)  # 20 ms
 
         # change to input using pull up
-        RPi.GPIO.setup(self.__pin, RPi.GPIO.IN, RPi.GPIO.PUD_UP)
+        RPi.GPIO.setup(self.__pin, RPi.GPIO.IN)
 
         # collect data into an array
         data = self.__collect_input()
