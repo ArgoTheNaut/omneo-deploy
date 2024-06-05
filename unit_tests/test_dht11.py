@@ -105,6 +105,7 @@ class DHT11:
                 unchanged_count += 1
                 if unchanged_count > max_unchanged_count:
                     break
+            time.sleep(0.001)   # 1 ms
 
         return data
 
