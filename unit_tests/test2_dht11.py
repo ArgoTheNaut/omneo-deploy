@@ -4,6 +4,7 @@
 import time
 import board
 import adafruit_dht
+import json
 
 # Sensor data pin is connected to GPIO 4
 # sensor = adafruit_dht.DHT22(board.D4)
@@ -17,6 +18,12 @@ while True:
         temperature_f = temperature_c * (9 / 5) + 32
         humidity = sensor.humidity
         print("Temp={0:0.1f}ºC, Temp={1:0.1f}ºF, Humidity={2:0.1f}%".format(temperature_c, temperature_f, humidity))
+        with open("/var/data/dht11/out", "+a") as file:
+            file.write(json.dumps({
+                "temp":temperature_c,
+                "humidity": humidity,
+                "time": int(time.time() * 1000)  # JS-friendly ms since epoch
+            }))
 
     except RuntimeError as error:
         # Errors happen fairly often, DHT's are hard to read, just keep going
@@ -27,4 +34,4 @@ while True:
         sensor.exit()
         raise error
 
-    time.sleep(3.0)
+    time.sleep(30)
