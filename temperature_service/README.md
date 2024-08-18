@@ -18,3 +18,29 @@ This segment uses a DHT11 sensor on a Raspberry Pi 3B to track the temperature a
     ```sh
     python3 unit_tests/test2_dht11.py
     ```
+
+## Service Setup
+Source: https://medium.com/@benmorel/creating-a-linux-service-with-systemd-611b5c8b91d6
+
+```sh
+cd /etc/systemd/system   # Move to the system folder
+sudo nano dht11.service  # Create the service file
+```
+
+Inside of Nano, write:
+```ini
+[Unit]
+Description=DHT11 onboard temperature and humidity sensor service
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=60
+User=pi
+ExecStart=/usr/bin/bash /home/pi/omneo-deploy/dht_service_launcher.sh
+
+[Install]
+WantedBy=multi-user.target
+```
