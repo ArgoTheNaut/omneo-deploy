@@ -12,7 +12,7 @@ This segment uses a DHT11 sensor on a Raspberry Pi 3B to track the temperature a
     cd omneo-deploy
     python3 -m venv dht11
     source ./dht11/bin/activate
-    python3 -m pip install adafruit-circuitpython-dht
+    python3 -m pip install adafruit-circuitpython-dht requests
     ```
 1. Run the test script
     ```sh
