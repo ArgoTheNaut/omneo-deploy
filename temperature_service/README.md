@@ -45,6 +45,11 @@ ExecStart=/usr/bin/bash /home/pi/omneo-deploy/dht_service_launcher.sh
 WantedBy=multi-user.target
 ```
 
+Start the service by running
+```bash
+sudo systemctl enable dht11
+```
+
 ### Service Control Commands
 ```bash
 sudo systemctl status dht11
