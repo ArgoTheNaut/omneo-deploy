@@ -43,4 +43,4 @@ while True:
         sensor.exit()
         raise error
 
-    time.sleep(30)
+    time.sleep(60 * 5)   # wait 5 mins between data points
