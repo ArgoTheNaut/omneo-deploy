@@ -10,6 +10,7 @@ pygame.mixer.music.set_volume(1.0)
 pygame.mixer.music.play()
 
 devices = sd.query_devices()
+print("All devices:", len(devices), devices)
 for i in range(len(devices)):
     device = devices[i]
     print(f"Playing audio on device: {i}: {device}")
