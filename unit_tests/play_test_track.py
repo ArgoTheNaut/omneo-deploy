@@ -4,6 +4,7 @@ import pygame
 import time
 import sounddevice as sd
 
+path = "../../Documents/test.mp3"
 devices = sd.query_devices()
 print("All devices:", len(devices), devices)
 for i in range(len(devices)):
@@ -12,7 +13,7 @@ for i in range(len(devices)):
     sd.default.device = i
 
     pygame.mixer.init()
-    pygame.mixer.music.load("../../Documents/test.mp3")
+    pygame.mixer.music.load(path)
     pygame.mixer.music.set_volume(1.0)
     pygame.mixer.music.play()
     time.sleep(10)
