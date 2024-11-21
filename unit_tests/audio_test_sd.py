@@ -7,7 +7,7 @@ def play_mp3(file_path):
     # Convert to NumPy array
     samples = sound.get_array_of_samples()
     # Normalize the samples 
-    samples = samples.astype('float32') / 32767 
+    samples = np.array(samples)
 
     sd.play(samples, sound.frame_rate)
     time.sleep(10)
