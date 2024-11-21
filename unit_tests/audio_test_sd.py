@@ -1,6 +1,7 @@
 import sounddevice as sd
 from pydub import AudioSegment
 import time
+import numpy as np
 
 def play_mp3(file_path):
     sound = AudioSegment.from_mp3(file_path)
