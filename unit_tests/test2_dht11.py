@@ -16,7 +16,7 @@ sensor = adafruit_dht.DHT11(board.D14)
 auth_key_path = "/var/data/dht11/auth.omneo"
 
 with open(auth_key_path, "r") as file:
-    auth_key = file.readline()
+    auth_key = file.readline().strip()
 
 while True:
     try:
