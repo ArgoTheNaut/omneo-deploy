@@ -12,6 +12,12 @@ import requests
 # Uncomment for DHT11
 sensor = adafruit_dht.DHT11(board.D14)
 
+# Save the auth key to the web server at this file path
+auth_key_path = "/var/data/dht11/auth.omneo"
+
+with open(auth_key_path, "r") as file:
+    auth_key = file.readline()
+
 while True:
     try:
         # Print the values to the serial port
@@ -24,6 +30,8 @@ while True:
         requests.post(url, json = {
             "temperature": temperature_c,
             "humidity": humidity
+        }, headers={
+            "omneoAuth": auth_key
         })
 
         # with open("/var/data/dht11/out", "+a") as file:
