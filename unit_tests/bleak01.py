@@ -6,7 +6,10 @@ from bleak import BleakScanner
 
 async def main():
     devices = await BleakScanner.discover()
-    for d in devices:
-        print(d.address, d.name, d.details)
+    if devices:
+        for d in devices:
+            print(d.address, d.name, d.details.RSSI)
+    else:
+        print("No BLE Devices found.")
 
 asyncio.run(main())
