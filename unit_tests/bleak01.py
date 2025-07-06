@@ -8,7 +8,8 @@ async def main():
     devices = await BleakScanner.discover()
     if devices:
         for d in devices:
-            print(d.address, d.name, d.details['props']['RSSI'])
+            details = d.details['props']
+            print(d.address, d.name, details['RSSI'], details['UUIDs'], details["ManufacturerData"])
     else:
         print("No BLE Devices found.")
 
