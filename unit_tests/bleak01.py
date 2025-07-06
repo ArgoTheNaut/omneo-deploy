@@ -14,7 +14,7 @@ async def main():
             mfData = "No data"
             if "ManufacturerData" in details:
                 mfData = details["ManufacturerData"]
-                mfData = mfData[mfData.keys()[0]]
+                mfData = mfData[list(mfData.keys())[0]]
 
             print(d.address, d.name, details["RSSI"], details["UUIDs"], mfData)
     else:
