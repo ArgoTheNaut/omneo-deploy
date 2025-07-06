@@ -9,7 +9,8 @@ async def main():
     if devices:
         for d in devices:
             details = d.details['props']
-            print(d.address, d.name, details['RSSI'], details['UUIDs'], details["ManufacturerData"])
+            mfData = details['ManufacturerData'] if "ManufacturerData" in details else "No data"
+            print(d.address, d.name, details['RSSI'], details['UUIDs'], mfData)
     else:
         print("No BLE Devices found.")
 
