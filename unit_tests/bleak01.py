@@ -16,7 +16,7 @@ async def main():
                 mfData = details["ManufacturerData"]
                 mfData = str(mfData[list(mfData.keys())[0]])
 
-            print(d.address, d.name, details["RSSI"], details["UUIDs"], mfData)
+            print(d.address, d.name, " " * (20 - len(d.name)), "\t", details["RSSI"], details["UUIDs"], mfData)
     else:
         print("No BLE Devices found.")
 
