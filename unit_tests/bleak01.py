@@ -4,14 +4,21 @@
 import asyncio
 from bleak import BleakScanner
 
+
 async def main():
     devices = await BleakScanner.discover()
     if devices:
         for d in devices:
-            details = d.details['props']
-            mfData = details['ManufacturerData'] if "ManufacturerData" in details else "No data"
-            print(d.address, d.name, details['RSSI'], details['UUIDs'], mfData)
+            details = d.details["props"]
+
+            mfData = "No data"
+            if "ManufacturerData" in details:
+                mfData = details["ManufacturerData"]
+                mfData = mfData[mfData.keys()[0]]
+
+            print(d.address, d.name, details["RSSI"], details["UUIDs"], mfData)
     else:
         print("No BLE Devices found.")
+
 
 asyncio.run(main())
