@@ -4,10 +4,13 @@
 import asyncio
 from bleak import BleakScanner
 
+def sortMethod(e):
+    return e.address
 
 async def main():
     devices = await BleakScanner.discover()
     if devices:
+        devices.sort(key=sortMethod)
         for d in devices:
             details = d.details["props"]
 
