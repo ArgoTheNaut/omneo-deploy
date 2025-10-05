@@ -8,6 +8,9 @@ import requests
 i2c_bus = busio.I2C(board.SCL, board.SDA)
 ccs811 = adafruit_ccs811.CCS811(i2c_bus)
 
+restarts = 0
+posts_since_restart = 0
+
 # Load the auth key to the web server at this file path
 auth_key_path = "/var/data/dht11/auth.omneo"
 with open(auth_key_path, "r") as file:
@@ -21,7 +24,9 @@ while True:
         url = "https://argus-lab.org/api/data/ccs811"    # Upload back up to your own locally hosted web server for forwarding to db
         requests.post(url, json = {
             "eco2": ccs811.eco2,
-            "tvoc": ccs811.tvoc
+            "tvoc": ccs811.tvoc,
+            "restarts": restarts,
+            "posts_since_restart": posts_since_restart
         }, headers={
             "omneoAuth": auth_key
         })
@@ -31,6 +36,8 @@ while True:
         ccs811.reset()
         i2c_bus = busio.I2C(board.SCL, board.SDA)
         ccs811 = adafruit_ccs811.CCS811(i2c_bus)
+        restarts += 1
 
     print("5-minute cooldown")
     time.sleep(60 * 5)   # wait 5 mins between data points
+    posts_since_restart += 1
