@@ -16,6 +16,12 @@ auth_key_path = "/var/data/dht11/auth.omneo"
 with open(auth_key_path, "r") as file:
     auth_key = file.readline().strip()
 
+awaiting_ready_sec = 0
+while not ccs811.data_ready:
+    print(f"Awaiting ready. t={awaiting_ready_sec}")
+    awaiting_ready_sec += 1
+    time.sleep(1)
+
 while True:
     try:
         print("CO2: %1.0f PPM" % ccs811.eco2)
