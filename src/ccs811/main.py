@@ -43,6 +43,7 @@ while True:
         i2c_bus = busio.I2C(board.SCL, board.SDA)
         ccs811 = adafruit_ccs811.CCS811(i2c_bus)
         restarts += 1
+        posts_since_restart = 0
 
     print("5-minute cooldown")
     time.sleep(60 * 5)   # wait 5 mins between data points
