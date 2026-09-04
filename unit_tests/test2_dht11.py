@@ -26,13 +26,14 @@ while True:
         humidity = sensor.humidity
         print("Temp={0:0.1f}ºC, Temp={1:0.1f}ºF, Humidity={2:0.1f}%".format(temperature_c, temperature_f, humidity))
 
-        url = "http://raspberrypi/api/consumers/dht11"    # Upload back up to your own locally hosted web server for forwarding to db
+        url = "https://argus-lab.org/api/consumers/dht11"    # Upload back up to web server for forwarding to db
         requests.post(url, json = {
             "temperature": temperature_c,
             "humidity": humidity
         }, headers={
             "omneoAuth": auth_key
         })
+        print(f"Request completed")
 
         # with open("/var/data/dht11/out", "+a") as file:
         #     file.write(json.dumps({
