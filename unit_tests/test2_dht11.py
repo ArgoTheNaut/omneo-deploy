@@ -33,7 +33,7 @@ while True:
         }, headers={
             "omneoAuth": auth_key
         })
-        print(f"Request completed")
+        print(f"Request completed", flush=True)
 
         # with open("/var/data/dht11/out", "+a") as file:
         #     file.write(json.dumps({
